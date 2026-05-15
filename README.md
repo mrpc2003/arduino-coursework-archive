@@ -2,10 +2,11 @@
 
 # 🛠️ Creative Engineering Design
 
-**창의공학설계 · Arduino Coursework Archive**
+English | [한국어](README.ko.md)
 
-수업에서 다룬 Arduino 예제·실습·과제 스케치를 한 곳에 모은 인덱스 레포입니다.<br/>
-LED·PWM 부터 초음파/적외선 센서, 서보 제어, 필터링, Bang-Bang & PID 까지의 흐름을 따라갑니다.
+**Arduino Coursework Archive**
+
+A collection of weekly Arduino sketches — examples, exercises, and assignments — from a Creative Engineering Design course. Covers the progression from basic LED/PWM through ultrasonic and IR sensors, servo control, signal filtering, and feedback control (Bang-Bang & PID).
 
 <br/>
 
@@ -35,35 +36,34 @@ LED·PWM 부터 초음파/적외선 센서, 서보 제어, 필터링, Bang-Bang 
 
 ## 🧭 About
 
-본 저장소는 **창의공학설계(Creative Engineering Design)** 강의에서 진행한 주차별 Arduino 실습/예제/과제 스케치를 폴더 단위로 보관합니다.
-강의 흐름은 대체로 다음과 같이 진행됩니다.
+This repository archives weekly Arduino sketches (examples, exercises, and assignments) from a **Creative Engineering Design** undergraduate course. The course progression follows this flow:
 
 ```mermaid
 flowchart LR
-    A["기초 I/O<br/>LED · Serial"] --> B["PWM<br/>analogWrite · Fade"]
-    B --> C["초음파 센서<br/>HC-SR04"]
-    C --> D["필터링<br/>Range · Mean · Median · EMA"]
-    D --> E["서보 제어<br/>Servo · 속도 제한"]
-    E --> F["멀티 이벤트<br/>millis() 스케줄링"]
-    F --> G["적외선(IR) 거리 센서<br/>비선형 회귀"]
-    G --> H["피드백 제어<br/>Bang-Bang · PID"]
+    A["Basic I/O<br/>LED · Serial"] --> B["PWM<br/>analogWrite · Fade"]
+    B --> C["Ultrasonic Sensor<br/>HC-SR04"]
+    C --> D["Filtering<br/>Range · Mean · Median · EMA"]
+    D --> E["Servo Control<br/>Servo · Speed Limiting"]
+    E --> F["Multi-Event<br/>millis() Scheduling"]
+    F --> G["IR Distance Sensor<br/>Nonlinear Regression"]
+    G --> H["Feedback Control<br/>Bang-Bang · PID"]
 ```
 
-> 각 스케치는 단일 `.ino` 파일이며, 폴더명에서 학습 단위(주차/예제/과제)를 추론할 수 있도록 구성되어 있습니다.
+> Each sketch is a single `.ino` file. Folder names encode the learning unit (week / example / assignment).
 
 ---
 
 ## 🔌 Hardware & Toolchain
 
-| 항목 | 내용 |
+| Item | Details |
 |---|---|
-| 보드 | Arduino UNO (ATmega328P, `arduino:avr:uno`) |
-| 주요 부품 | HC-SR04 초음파 센서, Sharp IR 거리 센서, SG90/MG-급 서보, LED, 가변저항(Potentiometer) |
-| 라이브러리 | 표준 `Arduino.h`, `Servo.h` (서보 사용 스케치에 한함) |
-| 시리얼 속도 | 스케치별 상이 (`57600`, `115200`, `1,000,000`, `2,000,000` 사용) |
-| IDE | [Arduino IDE](https://www.arduino.cc/en/software) 또는 [arduino-cli](https://arduino.github.io/arduino-cli/) |
+| Board | Arduino UNO (ATmega328P, `arduino:avr:uno`) |
+| Components | HC-SR04 ultrasonic sensor, Sharp IR distance sensor, SG90/MG-class servo, LED, potentiometer |
+| Libraries | Standard `Arduino.h`, `Servo.h` (servo sketches only) |
+| Serial Baud | Varies per sketch (`57600`, `115200`, `1000000`, `2000000`) |
+| IDE | [Arduino IDE](https://www.arduino.cc/en/software) or [arduino-cli](https://arduino.github.io/arduino-cli/) |
 
-> 핀 배치(LED 9, TRIG 12, ECHO 13, SERVO 10, IR A0, VAR A3 등)는 각 스케치 상단 `#define` 블록에 명시되어 있습니다. 회로를 결선하기 전에 해당 정의를 먼저 확인하세요.
+> Pin assignments (LED 9, TRIG 12, ECHO 13, SERVO 10, IR A0, VAR A3, etc.) are declared in the `#define` block at the top of each sketch. Always check these before wiring.
 
 ---
 
@@ -71,29 +71,29 @@ flowchart LR
 
 ```
 Creative_Engineering_Design/
-├── 04_example_1/                # 디지털 출력 기초 (LED)
-├── 04_example_2/                # 시리얼 출력 ("Hello World")
-├── 04_example_3/                # LED 토글 + 카운터
-├── 05_practice_2/               # LED 점멸 패턴 실습
-├── pwmpractice/                 # PWM 페이드 (analogWrite)
-├── 08_example_1/                # 초음파 거리 측정 + LED
-├── 08_example_2/                # millis() 기반 비차단 샘플링
-├── 08_example_3/                # 이동 평균(누적) 필터
-├── 08_assignment/               # 거리 → LED 밝기 매핑 과제
-├── 09_example_1/                # EMA(지수이동평균) 필터
-├── 09_assignment_1/             # Median 필터 과제 (보고서 PDF 포함)
-├── 10_example_1/                # 서보 기본 제어
-├── 11_example_1/                # 서보 + 초음파 거리 매핑
-├── 12_example_1/                # 멀티 이벤트 스케줄링
-├── 13_example_1/                # 서보 속도 제한 (ramp)
-├── 13_example_2/                # 서보 속도 제한 — 튜닝
-├── 17_example_1/                # IR 거리 센서 + 서보
-├── 20_example_1/                # IR 센서 스파이크 제거 필터
-├── 20_example_2/                # IR + EMA + 비선형 회귀
-├── 22_servo_range_adj/          # 가변저항으로 서보 캘리브레이션
+├── 04_example_1/                # Digital output basics (LED)
+├── 04_example_2/                # Serial output ("Hello World")
+├── 04_example_3/                # LED toggle + counter
+├── 05_practice_2/               # LED blink pattern exercise
+├── pwmpractice/                 # PWM fade (analogWrite)
+├── 08_example_1/                # Ultrasonic distance + LED
+├── 08_example_2/                # millis()-based non-blocking sampling
+├── 08_example_3/                # Running average filter
+├── 08_assignment/               # Distance → LED brightness mapping (assignment)
+├── 09_example_1/                # EMA (Exponential Moving Average) filter
+├── 09_assignment_1/             # Median filter assignment (includes report PDF)
+├── 10_example_1/                # Basic servo control
+├── 11_example_1/                # Servo + ultrasonic distance mapping
+├── 12_example_1/                # Multi-event scheduling
+├── 13_example_1/                # Servo speed limiting (ramp)
+├── 13_example_2/                # Servo speed limiting — tuning
+├── 17_example_1/                # IR distance sensor + servo
+├── 20_example_1/                # IR spike removal filter
+├── 20_example_2/                # IR + EMA + nonlinear regression
+├── 22_servo_range_adj/          # Servo calibration via potentiometer
 ├── 22_bangbangcontrol/
-│   └── 22_bbc_20223165/         # Bang-Bang 제어 구현
-├── 23_pid_P_only.ino            # PID 제어 (P항 스켈레톤)
+│   └── 22_bbc_20223165/         # Bang-Bang control implementation
+├── 23_pid_P_only.ino            # PID control (P-term skeleton)
 └── README.md
 ```
 
@@ -101,66 +101,66 @@ Creative_Engineering_Design/
 
 ## 📚 Lessons Index
 
-각 행의 폴더/파일을 클릭하면 해당 스케치로 이동합니다. 주제는 폴더명과 코드 내용으로부터 보수적으로 추정한 항목입니다.
+Click any folder/file link to jump to the corresponding sketch. Topics are conservatively inferred from folder names and code contents.
 
-### Week 04 — 디지털 I/O · 시리얼 기초
+### Week 04 — Digital I/O & Serial Basics
 
-| # | 폴더 / 파일 | 주제 | 핵심 개념 |
+| # | Folder / File | Topic | Key Concepts |
 |---|---|---|---|
-| 1 | [`04_example_1/`](./04_example_1/04_example_1.ino) | LED 디지털 출력 | `pinMode`, `digitalWrite` |
-| 2 | [`04_example_2/`](./04_example_2/04_example_2.ino) | 시리얼 통신 기초 | `Serial.begin`, `Serial.println` |
-| 3 | [`04_example_3/`](./04_example_3/04_example_3.ino) | LED 토글 + 카운터 | 함수 분리, 짝/홀 토글 |
+| 1 | [`04_example_1/`](./04_example_1/04_example_1.ino) | LED digital output | `pinMode`, `digitalWrite` |
+| 2 | [`04_example_2/`](./04_example_2/04_example_2.ino) | Serial communication basics | `Serial.begin`, `Serial.println` |
+| 3 | [`04_example_3/`](./04_example_3/04_example_3.ino) | LED toggle + counter | Function separation, even/odd toggle |
 
-### Week 05 / PWM — 점멸 & 페이드
+### Week 05 / PWM — Blink & Fade
 
-| # | 폴더 / 파일 | 주제 | 핵심 개념 |
+| # | Folder / File | Topic | Key Concepts |
 |---|---|---|---|
-| 4 | [`05_practice_2/`](./05_practice_2/05_practice_2.ino) | LED 점멸 패턴 | 반복문 + `delay` |
-| 5 | [`pwmpractice/`](./pwmpractice/pwmpractice.ino) | PWM 페이드 | `analogWrite`, fade in/out |
+| 4 | [`05_practice_2/`](./05_practice_2/05_practice_2.ino) | LED blink pattern | Loops + `delay` |
+| 5 | [`pwmpractice/`](./pwmpractice/pwmpractice.ino) | PWM fade | `analogWrite`, fade in/out |
 
-### Week 08 — 초음파(HC-SR04) 거리 측정
+### Week 08 — Ultrasonic (HC-SR04) Distance Measurement
 
-| # | 폴더 / 파일 | 주제 | 핵심 개념 |
+| # | Folder / File | Topic | Key Concepts |
 |---|---|---|---|
-| 6 | [`08_example_1/`](./08_example_1/08_example_1.ino) | 거리 측정 + 범위 LED | `pulseIn`, TRIG/ECHO, `delay` 기반 샘플링 |
-| 7 | [`08_example_2/`](./08_example_2/08_example_2.ino) | 비차단 샘플링 | `millis()` 기반 인터벌 |
-| 8 | [`08_example_3/`](./08_example_3/08_example_3.ino) | 누적 평균 필터 | n-샘플 평균 |
-| 9 | [`08_assignment/`](./08_assignment/08_assignment.ino) | **과제** — 거리 → LED 밝기 매핑 | `map()`, 영역별 선형 매핑 |
+| 6 | [`08_example_1/`](./08_example_1/08_example_1.ino) | Distance + range LED | `pulseIn`, TRIG/ECHO, `delay`-based sampling |
+| 7 | [`08_example_2/`](./08_example_2/08_example_2.ino) | Non-blocking sampling | `millis()`-based interval |
+| 8 | [`08_example_3/`](./08_example_3/08_example_3.ino) | Running average filter | n-sample mean |
+| 9 | [`08_assignment/`](./08_assignment/08_assignment.ino) | **Assignment** — Distance → LED brightness | `map()`, zone-based linear mapping |
 
-### Week 09 — 신호 필터링
+### Week 09 — Signal Filtering
 
-| # | 폴더 / 파일 | 주제 | 핵심 개념 |
+| # | Folder / File | Topic | Key Concepts |
 |---|---|---|---|
-| 10 | [`09_example_1/`](./09_example_1/09_example_1.ino) | EMA 필터 | 지수이동평균 (`α`) |
-| 11 | [`09_assignment_1/`](./09_assignment_1/09_assignment_1.ino) | **과제** — Median 필터 | 정렬 기반 중위수 필터, EMA 비교 ([보고서 PDF](./09_assignment_1/06-09C1-20223165-%EA%B9%80%EC%9A%B0%ED%98%84.pdf)) |
+| 10 | [`09_example_1/`](./09_example_1/09_example_1.ino) | EMA filter | Exponential Moving Average (`α`) |
+| 11 | [`09_assignment_1/`](./09_assignment_1/09_assignment_1.ino) | **Assignment** — Median filter | Sort-based median, EMA comparison ([Report PDF](./09_assignment_1/06-09C1-20223165-%EA%B9%80%EC%9A%B0%ED%98%84.pdf)) |
 
-### Week 10–13 — 서보 모터
+### Week 10–13 — Servo Motors
 
-| # | 폴더 / 파일 | 주제 | 핵심 개념 |
+| # | Folder / File | Topic | Key Concepts |
 |---|---|---|---|
-| 12 | [`10_example_1/`](./10_example_1/10_example_1.ino) | 서보 기본 제어 | `Servo.h`, `myservo.write()` |
-| 13 | [`11_example_1/`](./11_example_1/11_example_1.ino) | 거리 → 서보 각도 매핑 | EMA + `writeMicroseconds()` |
-| 14 | [`12_example_1/`](./12_example_1/12_example_1.ino) | 멀티 이벤트 스케줄링 | dist/servo/serial 별 인터벌 분리 |
-| 15 | [`13_example_1/`](./13_example_1/13_example_1.ino) | 서보 속도 제한 | 각속도 → duty 변화량 변환 |
-| 16 | [`13_example_2/`](./13_example_2/13_example_2.ino) | 속도 제한 — 저속 튜닝 | `_SERVO_SPEED` 한계 탐색 |
+| 12 | [`10_example_1/`](./10_example_1/10_example_1.ino) | Basic servo control | `Servo.h`, `myservo.write()` |
+| 13 | [`11_example_1/`](./11_example_1/11_example_1.ino) | Distance → servo angle mapping | EMA + `writeMicroseconds()` |
+| 14 | [`12_example_1/`](./12_example_1/12_example_1.ino) | Multi-event scheduling | Separate intervals for dist/servo/serial |
+| 15 | [`13_example_1/`](./13_example_1/13_example_1.ino) | Servo speed limiting | Angular velocity → duty delta conversion |
+| 16 | [`13_example_2/`](./13_example_2/13_example_2.ino) | Speed limiting — low-speed tuning | `_SERVO_SPEED` threshold exploration |
 
-### Week 17–20 — 적외선(IR) 거리 센서
+### Week 17–20 — Infrared (IR) Distance Sensor
 
-| # | 폴더 / 파일 | 주제 | 핵심 개념 |
+| # | Folder / File | Topic | Key Concepts |
 |---|---|---|---|
-| 17 | [`17_example_1/`](./17_example_1/17_example_1.ino) | IR + 서보 | EMA, IR 거리 환산 |
-| 18 | [`20_example_1/`](./20_example_1/20_example_1.ino) | IR 스파이크 제거 | 백분위 기반 median-like 필터 |
-| 19 | [`20_example_2/`](./20_example_2/20_example_2.ino) | IR + EMA + 회귀 | 비선형 회귀로 전압→거리 변환 |
+| 17 | [`17_example_1/`](./17_example_1/17_example_1.ino) | IR + servo | EMA, IR distance conversion |
+| 18 | [`20_example_1/`](./20_example_1/20_example_1.ino) | IR spike removal | Percentile-based median-like filter |
+| 19 | [`20_example_2/`](./20_example_2/20_example_2.ino) | IR + EMA + regression | Nonlinear regression for voltage → distance |
 
-### Week 22–23 — 피드백 제어
+### Week 22–23 — Feedback Control
 
-| # | 폴더 / 파일 | 주제 | 핵심 개념 |
+| # | Folder / File | Topic | Key Concepts |
 |---|---|---|---|
-| 20 | [`22_servo_range_adj/`](./22_servo_range_adj/22_servo_range_adj.ino) | 서보 캘리브레이션 | 가변저항 입력으로 duty 보정 |
-| 21 | [`22_bangbangcontrol/22_bbc_20223165/`](./22_bangbangcontrol/22_bbc_20223165/22_bbc_20223165.ino) | Bang-Bang 제어 | 목표 거리 ± 한쪽 토글 |
-| 22 | [`23_pid_P_only.ino`](./23_pid_P_only.ino) | PID 제어 (P항) — 스켈레톤 | `error`, `pterm`, `control` 채우기 과제 |
+| 20 | [`22_servo_range_adj/`](./22_servo_range_adj/22_servo_range_adj.ino) | Servo calibration | Potentiometer input for duty correction |
+| 21 | [`22_bangbangcontrol/22_bbc_20223165/`](./22_bangbangcontrol/22_bbc_20223165/22_bbc_20223165.ino) | Bang-Bang control | Target distance ± toggle |
+| 22 | [`23_pid_P_only.ino`](./23_pid_P_only.ino) | PID control (P-term) — skeleton | Fill in `error`, `pterm`, `control` |
 
-> 💡 `23_pid_P_only.ino` 는 **빈칸(`??`) 형태의 학습 템플릿**이라 그대로 컴파일되지 않습니다. 강의용 출발점으로 보관되어 있습니다.
+> 💡 `23_pid_P_only.ino` is a **fill-in-the-blank (`??`) learning template** and will not compile as-is. It is preserved as a course starting point.
 
 ---
 
@@ -168,101 +168,99 @@ Creative_Engineering_Design/
 
 ### Option 1 — Arduino IDE
 
-1. [Arduino IDE](https://www.arduino.cc/en/software) 설치 후 보드를 PC에 USB 로 연결합니다.
-2. **Tools → Board → Arduino UNO** 를 선택하고, 올바른 시리얼 포트를 지정합니다.
-3. 실행하려는 폴더의 `.ino` 파일을 IDE 로 열고 **Upload (✔→)** 버튼을 누릅니다.
-4. **Serial Monitor / Serial Plotter** 를 열어 baudrate 을 스케치 상단에 정의된 값으로 맞춥니다.
+1. Install [Arduino IDE](https://www.arduino.cc/en/software) and connect the board via USB.
+2. Select **Tools → Board → Arduino UNO** and choose the correct serial port.
+3. Open the `.ino` file from the desired folder and click **Upload (✔→)**.
+4. Open **Serial Monitor / Serial Plotter** and set the baud rate to the value defined at the top of the sketch.
 
 ### Option 2 — `arduino-cli`
 
 ```bash
-# 1. 코어 설치 (최초 1회)
+# 1. Install core (first time only)
 arduino-cli core update-index
 arduino-cli core install arduino:avr
 
-# 2. 컴파일
+# 2. Compile
 arduino-cli compile --fqbn arduino:avr:uno ./08_example_1
 
-# 3. 업로드 (포트는 환경에 맞게 교체: macOS /dev/cu.usbmodem*, Linux /dev/ttyACM0, Windows COM3)
+# 3. Upload (adjust port: macOS /dev/cu.usbmodem*, Linux /dev/ttyACM0, Windows COM3)
 arduino-cli upload --fqbn arduino:avr:uno -p /dev/ttyACM0 ./08_example_1
 
-# 4. 시리얼 모니터
+# 4. Serial monitor
 arduino-cli monitor -p /dev/ttyACM0 -c baudrate=57600
 ```
 
-> ⚠️ **하드웨어 주의**: 서보를 USB 5V 만으로 구동하면 전류 부족으로 보드가 리셋될 수 있습니다. 외부 전원 또는 충분한 용량의 5V 어댑터를 사용하고, GND 를 공통으로 묶어 주세요.
+> ⚠️ **Hardware note**: Powering a servo from USB 5 V alone may cause insufficient current and board resets. Use an external power supply or a 5 V adapter with adequate capacity, and tie GND together.
 
 ---
 
 ## 🧩 Conventions
 
-스케치 전반에서 공통으로 사용되는 매크로/관례입니다.
+Common macros and naming conventions used across sketches:
 
-| 매크로 | 의미 | 예시 |
+| Macro | Meaning | Example |
 |---|---|---|
-| `PIN_LED` | LED 핀 (대부분 9 또는 13) | `#define PIN_LED 9` |
-| `PIN_TRIG` / `PIN_ECHO` | HC-SR04 트리거 / 에코 | `12 / 13` |
-| `PIN_SERVO` | 서보 신호 | `10` |
-| `PIN_IR` | IR 거리 센서 입력 | `A0` |
-| `PIN_VAR` | 가변저항 입력 | `A3` |
-| `_DUTY_MIN` / `_DUTY_NEU` / `_DUTY_MAX` | 서보 펄스 폭 (µs) | `553 / 1476 / 2399` (튜닝 필요) |
-| `_DIST_MIN` / `_DIST_MAX` | 측정 가능 거리 범위 (mm) | `100 / 300` |
-| `_EMA_ALPHA` | EMA 가중치 (0~1) | `0.2` ~ `0.9` |
-| `INTERVAL` / `_INTERVAL_*` | 비차단 샘플링 주기 (ms) | `5`, `20`, `25`, `100` |
+| `PIN_LED` | LED pin (usually 9 or 13) | `#define PIN_LED 9` |
+| `PIN_TRIG` / `PIN_ECHO` | HC-SR04 trigger / echo | `12 / 13` |
+| `PIN_SERVO` | Servo signal | `10` |
+| `PIN_IR` | IR distance sensor input | `A0` |
+| `PIN_VAR` | Potentiometer input | `A3` |
+| `_DUTY_MIN` / `_DUTY_NEU` / `_DUTY_MAX` | Servo pulse width (µs) | `553 / 1476 / 2399` (needs tuning) |
+| `_DIST_MIN` / `_DIST_MAX` | Measurable distance range (mm) | `100 / 300` |
+| `_EMA_ALPHA` | EMA weight (0–1) | `0.2` – `0.9` |
+| `INTERVAL` / `_INTERVAL_*` | Non-blocking sampling period (ms) | `5`, `20`, `25`, `100` |
 
-> 서보의 `_DUTY_*` 값은 개체차가 큽니다. 새 서보를 끼울 때마다 `22_servo_range_adj` 로 캘리브레이션하는 것을 권장합니다.
+> Servo `_DUTY_*` values vary significantly between units. Calibrate with `22_servo_range_adj` whenever you swap servos.
 
 ---
 
 ## 📝 Notes on Assignments
 
 <details>
-<summary><b>08_assignment — 거리 비례 LED 밝기</b></summary>
+<summary><b>08_assignment — Distance-Proportional LED Brightness</b></summary>
 
-- 100 mm ≤ d ≤ 300 mm 구간에서 **150 mm / 250 mm 양 끝은 어둡게, 200 mm 중앙은 밝게** 동작하도록 구간별 `map()` 으로 PWM 출력을 산출합니다.
-- 범위 밖 값은 직전 유효 측정값으로 대체합니다 (`pre_distance`, `pre_brightness`).
+- In the 100 mm ≤ d ≤ 300 mm range, the LED is **dim at 150 mm / 250 mm edges and brightest at the 200 mm midpoint**, using zone-based `map()` for PWM output.
+- Out-of-range values are replaced with the last valid measurement (`pre_distance`, `pre_brightness`).
 </details>
 
 <details>
 <summary><b>09_assignment_1 — Median Filter</b></summary>
 
-- `SAMPLE_SIZE` 를 3 / 10 / 30 으로 바꿔 가며 raw · EMA · Median 출력을 시리얼 플로터로 비교하도록 구성되어 있습니다.
-- 정렬은 단순 삽입정렬로 구현되어 있어, 큰 `SAMPLE_SIZE` 에서는 처리 시간이 늘어나 인터벌과 충돌할 수 있습니다.
-- 결과/분석은 폴더 내 [`06-09C1-20223165-김우현.pdf`](./09_assignment_1/06-09C1-20223165-%EA%B9%80%EC%9A%B0%ED%98%84.pdf) 보고서를 참고하세요.
+- Configured to compare raw, EMA, and Median outputs on the Serial Plotter with `SAMPLE_SIZE` set to 3 / 10 / 30.
+- Sorting uses a simple insertion sort; large `SAMPLE_SIZE` values may increase processing time and conflict with the sampling interval.
+- See the in-folder [`06-09C1-20223165-김우현.pdf`](./09_assignment_1/06-09C1-20223165-%EA%B9%80%EC%9A%B0%ED%98%84.pdf) report for results and analysis.
 </details>
 
 <details>
 <summary><b>22_bbc — Bang-Bang Control</b></summary>
 
-- 목표 거리(`dist_target = 155 mm`) 기준으로 서보 duty 를 `_DUTY_NEU ± _BANGBANG_RANGE` 두 값 사이로 토글합니다.
-- 서보 각속도 제한(`_SERVO_SPEED`)을 함께 사용해 duty 변화를 인터벌마다 조금씩 적용합니다.
+- Toggles servo duty between `_DUTY_NEU ± _BANGBANG_RANGE` based on a target distance (`dist_target = 155 mm`).
+- Uses servo angular speed limiting (`_SERVO_SPEED`) to apply duty changes incrementally each interval.
 </details>
 
 <details>
-<summary><b>23_pid_P_only — PID (스켈레톤)</b></summary>
+<summary><b>23_pid_P_only — PID (Skeleton)</b></summary>
 
-- `error_curr`, `pterm`, `control` 자리에 `??` 가 남아 있는 **수업용 템플릿**입니다. 그대로 컴파일하면 오류가 발생합니다.
-- 채워 넣을 때는 `error_curr = dist_target - dist_ema` 와 같이 부호 규약을 먼저 정해 두세요.
+- A **course template** with `??` placeholders for `error_curr`, `pterm`, and `control`. It will not compile as-is.
+- When filling in, establish a sign convention first, e.g., `error_curr = dist_target - dist_ema`.
 </details>
 
 ---
 
 ## ⚠️ Disclaimer
 
-본 저장소의 코드와 자료는 **학부 강의 수강 중 작성한 학습 결과물**입니다.
+The code and materials in this repository are **undergraduate coursework produced during class**.
 
-- 산업용/안전 임계 환경에서의 사용은 의도되지 않았습니다.
-- 일부 스케치(`23_pid_P_only.ino` 등)는 학습 목적의 미완성 템플릿입니다.
-- 핀 번호·duty 값·필터 계수는 강의 환경의 부품 개체차에 맞춰 조정된 값이므로, 다른 하드웨어에서 사용할 때는 반드시 **재캘리브레이션** 후 사용하세요.
+- Not intended for industrial or safety-critical use.
+- Some sketches (e.g., `23_pid_P_only.ino`) are intentionally incomplete learning templates.
+- Pin numbers, duty values, and filter coefficients are tuned to specific hardware used in the course environment. **Recalibrate** before using with different hardware.
 
 ---
 
 ## 👤 Author
 
-**김우현** ([@mrpc2003](https://github.com/mrpc2003))
-창의공학설계 수강생 · Arduino / Embedded 입문 학습자.
-
-> 이 README 는 강의 자료 인덱스 용도로 정리되었습니다. 폴더 구조 변경 / 새 주차 추가 시 [Lessons Index](#-lessons-index) 표를 함께 갱신해 주세요.
+**Woohyun Kim** ([@mrpc2003](https://github.com/mrpc2003))
+Creative Engineering Design student · Arduino / Embedded beginner.
 
 <div align="center">
 
