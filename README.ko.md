@@ -72,7 +72,7 @@ flowchart LR
 ## 🗂 저장소 구조
 
 ```
-Creative_Engineering_Design/
+arduino-coursework-archive/
 ├── 04_example_1/                # 디지털 출력 기초 (LED)
 ├── 04_example_2/                # 시리얼 출력 ("Hello World")
 ├── 04_example_3/                # LED 토글 + 카운터

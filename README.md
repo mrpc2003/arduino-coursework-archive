@@ -70,7 +70,7 @@ flowchart LR
 ## 🗂 Repository Layout
 
 ```
-Creative_Engineering_Design/
+arduino-coursework-archive/
 ├── 04_example_1/                # Digital output basics (LED)
 ├── 04_example_2/                # Serial output ("Hello World")
 ├── 04_example_3/                # LED toggle + counter
